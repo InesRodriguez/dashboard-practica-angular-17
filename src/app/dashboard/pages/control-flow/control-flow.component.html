@@ -1,1 +1,49 @@
-<p>control-flow works!</p>,
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="bg-white rounded shadow p-10">
+        <h2 class="text-2xl font-bold mb-5">if:{{ showContent()}}</h2>
+        <button class="p-2 bg-blue-500 rounded text-white" (click)="toggleContent()">Click me!</button>
+        @if (showContent()) {
+        <p>Hola mundo</p>
+        }@else{
+        <p>*****</p>
+        }
+    </div>
+    <div class="bg-white rounded shadow p-10">
+        <h2 class="text-3xl">{{grade()}}</h2>
+        @switch (grade()) {
+        @case ('A') {
+        <p>Arriba de 90</p>
+        }
+        @case ('B') {
+        <p>Arriba de 80</p>
+        }
+        @case ('F') {
+        <p>Reprobado</p>
+        }
+        }
+    </div>
+    <div class="bg-white rounded shadow p-10">
+        <ul>
+            @for (item of frameworks(); track item; let i = $index, first = $first, even = $even, odd =$odd,last =
+            $last, count =
+            $count) {
+            <li [class]="
+                {
+                'bg-red-100':even && !first && !last,
+                'bg-purple-100':odd && !first && !last,
+                'bg-blue-100': first || last
+                }
+
+                ">
+                {{i +1}} / {{count}} -
+                {{item}}
+            </li>
+            }@empty {
+            <li>No hay frameworks agregados</li>
+            }
+        </ul>
+    </div>
+    <div class="bg-white rounded shadow p-10">
+
+    </div>
+</section>

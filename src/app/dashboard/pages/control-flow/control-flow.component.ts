@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+
+type Grade = 'A' | 'B' | 'F';
 
 @Component({
   selector: 'app-control-flow',
@@ -8,4 +10,11 @@ import { Component } from '@angular/core';
   templateUrl: './control-flow.component.html',
   styles: ``
 })
-export class ControlFlowComponent {}
+export default class ControlFlowComponent {
+  public showContent = signal(false);
+  public grade = signal('F');
+  public frameworks = signal(['Angular', 'Vue', 'Qwik', 'React']);
+  public toggleContent() {
+    this.showContent.update((state) => !state);
+  }
+}
